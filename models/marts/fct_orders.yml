@@ -1,0 +1,69 @@
+models:
+  - name: fct_orders
+    description: >
+      Fact table at order-item grain.
+      Each row represents a single item within an order, enriched with
+      customer, product, and store context.
+
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: order_item_key
+        description: Surrogate key for the order-item grain
+        data_type: string
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        description: Natural order identifier
+        data_type: string
+        data_tests:
+          - not_null
+
+      - name: customer_id
+        description: Identifier of the customer who placed the order
+        data_type: string
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+
+      - name: store_id
+        description: Identifier of the store where the order was placed
+        data_type: string
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stores')
+              field: store_id
+
+      - name: product_sku
+        description: SKU of the product in the order item
+        data_type: string
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_sku
+
+      - name: ordered_at
+        description: Timestamp when the order was placed
+        data_type: timestamp
+        data_tests:
+          - not_null
+
+      - name: subtotal
+        description: Subtotal amount for the order
+        data_type: integer
+
+      - name: tax_paid
+        description: Tax amount paid for the order
+        data_type: integer
+
+      - name: order_total
+        description: Total order amount including tax
+        data_type: integer
