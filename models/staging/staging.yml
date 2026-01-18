@@ -1,0 +1,66 @@
+models:
+  - name: stg_customers
+    description: Staged customers data
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_orders
+    description: Staged orders data
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        data_tests:
+          - not_null
+
+  - name: stg_items
+    description: Staged order items
+    columns:
+      - name: item_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        data_tests:
+          - not_null
+
+  - name: stg_products
+    description: Staged product catalog
+    columns:
+      - name: product_sku
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_store
+    description: Staged store metadata
+    columns:
+      - name: store_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_supplies
+    description: Staged supplies data
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - supply_id
+              - product_sku
+
+    columns:
+      - name: supply_id
+        data_tests:
+          - not_null
+
+      - name: product_sku
+        data_tests:
+          - not_null
