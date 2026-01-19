@@ -1,0 +1,16 @@
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        data_tests: [not_null, unique]
+
+  - name: dim_stores
+    columns:
+      - name: store_id
+        data_tests: [not_null, unique]
+
+  - name: dim_supplies
+    columns:
+      - name: supply_key
+        data_tests: [not_null, unique]
+

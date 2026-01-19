@@ -1,0 +1,23 @@
+sources:
+  - name: raw
+    schema: raw
+    description: Raw data loaded from CSV files into BigQuery
+
+    tables:
+      - name: customers
+        description: Raw customers data
+
+      - name: items
+        description: Raw order line items
+
+      - name: orders
+        description: Raw orders data
+
+      - name: products
+        description: Raw product catalog
+
+      - name: stores
+        description: Stores metadata
+
+      - name: supplies
+        description: Supply inventory data
