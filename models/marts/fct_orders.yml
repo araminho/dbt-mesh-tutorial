@@ -9,6 +9,8 @@ models:
       contract:
         enforced: true
 
+    latest_version: 1
+    
     columns:
       - name: order_item_key
         description: Surrogate key for the order-item grain
@@ -67,3 +69,19 @@ models:
       - name: order_total
         description: Total order amount including tax
         data_type: integer
+    versions:
+      - v: 1
+      # Matches what's above -- nothing more needed
+        config:
+          alias: fct_orders
+
+      - v: 2
+        config:
+          alias: fct_orders_v2
+        columns:
+          - name: order_amount
+            description: Total order amount including tax
+            data_type: integer
+          - include: all
+            exclude: [order_total]
+          
