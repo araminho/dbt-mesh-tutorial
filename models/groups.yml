@@ -1,0 +1,9 @@
+groups:
+  - name: finance
+    owner:
+      name: AA BB
+      email: aa@bb.cc
+  - name: product
+    owner:
+      name: XX YY
+      email: xx@yy.zz

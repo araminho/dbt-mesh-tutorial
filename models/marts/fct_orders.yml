@@ -6,6 +6,8 @@ models:
       customer, product, and store context.
 
     config:
+      access: public
+      group: finance
       contract:
         enforced: true
 
